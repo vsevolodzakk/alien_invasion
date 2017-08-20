@@ -2,8 +2,10 @@ import sys
 
 import pygame
 
+import game_functions as gf
+
 from settings import Settings
-#from ship import Ship
+from ship import Ship
 
 def run_game():
 	#Инициализация игры
@@ -14,16 +16,13 @@ def run_game():
 	pygame.display.set_caption("Alien Invasion")
 	
 	#Создадим корабль
-	#ship = Ship(screen)
+	ship = Ship(game_settings, screen)
 
 	# Запуск основного цикла игры
 	while True:
 		# Отслеживание событий 
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				sys.exit()
-			screen.fill(game_settings.bg_color)
-			ship.blitme()
-		# Отображение последнего экрана
-		pygame.display.flip()
+		gf.check_events(ship)
+		ship.update()
+		gf.update_screen(game_settings, screen, ship)
+			
 run_game()

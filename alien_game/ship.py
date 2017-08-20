@@ -1,9 +1,10 @@
 import pygame
 
 class Ship():
-	def __init__(self, screen):
+	def __init__(self, game_settings, screen):
 		"""Инициирует корабль и задает его начальную позицию"""
 		self.screen = screen
+		self.game_settings = game_settings
 		
 		# Загрузка изображения корабля
 		self.image = pygame.image.load('images/rocket.bmp')
@@ -12,6 +13,20 @@ class Ship():
 		#
 		self.rect.centerx = self.screen_rect.centerx
 		self.rect.bottom = self.screen_rect.bottom
+		
+		#Saving ship center coordiantes
+		self.center = float(self.rect.centerx)
+		
+		#Movement flag
+		self.moving_right = False
+		self.moving_left = False
+	def update(self):
+		"""Updates position according to flag state"""
+		if self.moving_right:
+			self.center += self.game_settings.ship_speed_factor
+		if self.moving_left:
+			self.center -= self.game_settings.ship_speed_factor
+		self.rect.centerx = self.center	
 	def blitme(self):
 		"""Рисует кораблю в текущей позиции"""
 		self.screen.blit(self.image, self.rect)
