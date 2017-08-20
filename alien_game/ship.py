@@ -22,9 +22,9 @@ class Ship():
 		self.moving_left = False
 	def update(self):
 		"""Updates position according to flag state"""
-		if self.moving_right:
+		if self.moving_right and self.rect.right < self.screen_rect.right:
 			self.center += self.game_settings.ship_speed_factor
-		if self.moving_left:
+		if self.moving_left and self.rect.left > 0:
 			self.center -= self.game_settings.ship_speed_factor
 		self.rect.centerx = self.center	
 	def blitme(self):
