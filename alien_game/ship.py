@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Sprite
 
 class Ship():
 	def __init__(self, game_settings, screen):
@@ -30,3 +31,30 @@ class Ship():
 	def blitme(self):
 		"""Рисует кораблю в текущей позиции"""
 		self.screen.blit(self.image, self.rect)
+		
+class Bullet(Sprite):
+	def __init__(self, game_settings, screen, ship):
+		"""Bullet object appears"""
+		super().__init__()
+		self.screen = screen
+		
+		#Bullet creation in (0,0) position
+		self.rect = pygame.Rect(0, 0, game_settings.bullet_width, game_settings.bullet_height)
+		self.rect.centerx = ship.rect.centerx
+		self.rect.top = ship.rect.top
+		
+		#Bullet center coordiantes
+		self.y = float(self.rect.y)
+		
+		self.color = game_settings.bullet_color
+		self.speed = game_settings.bullet_speed
+		
+	def update(self):
+		"""Translate bullet on the screen"""
+		#Bullet position update in float
+		self.y -= self.speed
+		#Rect position update
+		self.rect.y = self.y
+	def draw_bullet(self):
+		"""Bullet on the screen"""
+		pygame.draw.rect(self.screen, self.color, self.rect)
