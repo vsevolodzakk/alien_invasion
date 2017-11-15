@@ -8,7 +8,7 @@ class Ship():
 		self.game_settings = game_settings
 		
 		# Загрузка изображения корабля
-		self.image = pygame.image.load('images/rocket.bmp')
+		self.image = pygame.image.load('images/rocket.png')
 		self.rect = self.image.get_rect()
 		self.screen_rect = screen.get_rect()
 		#

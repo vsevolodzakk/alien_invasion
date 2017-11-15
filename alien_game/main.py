@@ -7,6 +7,7 @@ import game_functions as gf
 
 from settings import Settings
 from ship import Ship
+#from alien import Alien
 
 def run_game():
 	#Инициализация игры
@@ -19,8 +20,16 @@ def run_game():
 	#Создадим корабль
 	ship = Ship(game_settings, screen)
 	
+	#Create an alien
+	#alien = Alien(game_settings, screen)
+	
 	#Bullet Group
 	bullets = Group()
+	
+	#Alliens fleet
+	aliens = Group()
+	
+	gf.create_fleet(game_settings, screen, aliens)
 
 	# Запуск основного цикла игры
 	while True:
@@ -28,5 +37,5 @@ def run_game():
 		gf.check_events(game_settings, screen, ship, bullets)
 		ship.update()
 		gf.update_bullets(bullets)
-		gf.update_screen(game_settings, screen, ship, bullets)
+		gf.update_screen(game_settings, screen, ship, aliens, bullets)
 run_game()
