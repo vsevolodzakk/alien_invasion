@@ -5,13 +5,13 @@ class Settings():
 		# Параметры экрана
 		self.screen_width = 800
 		self.screen_height = 600
-		self.bg_color = (50, 100, 50)
-		
+		self.bg_color = (0, 0, 0)
+
 		#Ship settings
-		self.ship_speed_factor = 0.5
-		
+		self.ship_speed_factor = 2
+
 		#Bullet settings
-		self.bullet_speed = 0.7
+		self.bullet_speed = 6
 		self.bullet_width = 3
 		self.bullet_height = 15
 		self.bullet_color = (60, 60, 60)
