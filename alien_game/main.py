@@ -31,13 +31,14 @@ def run_game():
 	bullets = Group()
 	#Alliens fleet
 	aliens = Group()
-	gf.create_fleet(game_settings, screen, aliens)
+	gf.create_fleet(game_settings, screen, aliens, ship)
 	# Запуск основного цикла игры
 	while True:
 		# Отслеживание событий
 		gf.check_events(game_settings, screen, ship, bullets)
 		ship.update()
-		gf.update_bullets(bullets)
+		gf.update_bullets(aliens, bullets)
+		gf.update_aliens(aliens, game_settings)
 		gf.update_screen(game_settings, screen, ship, aliens, bullets, star_field, clock, WHITE)
 		clock.tick(60)
 run_game()
